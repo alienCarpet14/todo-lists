@@ -1,0 +1,33 @@
+ <p>todo-item works!</p>
+<!-- TODO: premenovat inputy a form -->
+
+<form [formGroup]="todoItemForm" (ngSubmit)="onSubmit()">
+  
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Meno</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      
+    </div>
+    
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Priezvisko</mat-label>
+        <input matInput formControlName="surname">
+      </mat-form-field>
+      
+    </div>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Dátum narodenia</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> 
+    
+    <div>
+      <button mat-raised-button color="primary">Odoslať</button>
+    </div>
+    </form>
+
