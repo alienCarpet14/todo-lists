@@ -1,5 +1,34 @@
 <!-- <p>todo-list works!</p> -->
 
+<div>
+    <button (click) = loadList() > BIG SCARY BUTTON</button>
+    <mat-card *ngFor= "let l of list" (click) = loadListItems(l.id)>
+      <mat-card-title>
+        {{l.title}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{l.id}}
+      </mat-card-subtitle>
+    </mat-card>
+</div>
+
+
+<div>
+    <mat-card *ngFor= "let i of item" [style.background]="i.completed == 'True' ? 'greenyellow' : 'indianred'">
+      <mat-card-title>
+        {{i.title}}
+      </mat-card-title>
+      <mat-card-content>
+        {{i.text}}
+      </mat-card-content>
+      <mat-card-footer>
+        {{i.deadline}}
+      </mat-card-footer>
+      <mat-card-subtitle>
+        {{i.completed}}
+      </mat-card-subtitle>
+    </mat-card>
+</div>
 
 <form [formGroup]="todoListForm" (ngSubmit)="onSubmit()">
   

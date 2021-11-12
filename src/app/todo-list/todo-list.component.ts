@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ListService } from '../list.service';
+import { List } from '../list';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,13 +10,40 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 })
 export class TodoListComponent {
 
-  a=2;
   //added line to tsconfig.json -> "strictPropertyInitialization": false
   todoListForm: FormGroup;       
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private _listService: ListService) { 
   }
+
+  list;
+
+  loadList() {
+    this._listService.getList().subscribe(data => {
+      this.list = data;
+      console.log(this.list);
+      this.list.forEach(element => { 
+        console.log(element);
+        
+      });
+    });
+  }
+
+  item;
+
+  loadListItems(a : number) {
+    this._listService.getListItems(a).subscribe(data => {
+      this.item = data;
+      console.log(this.item);
+      this.item.forEach(element => { 
+        console.log(element);
+        
+      });
+    });
+  }
+
+  
 
   onInput(){
     console.log("input");

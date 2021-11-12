@@ -1,6 +1,37 @@
  <p>todo-item works!</p>
-<!-- TODO: premenovat inputy a form -->
+<!-- <div>
+    <button (click) = loadListItems() > BIG SCARY BUTTON</button>
+    <mat-card *ngFor= "let l of item" [style.background]="l.completed == 'True' ? 'greenyellow' : 'indianred'">
+      <mat-card-title>
+        {{l.title}}
+      </mat-card-title>
+      <mat-card-content>
+        {{l.text}}
+      </mat-card-content>
+      <mat-card-footer>
+        {{l.deadline}}
+      </mat-card-footer>
+      <mat-card-subtitle>
+        {{l.completed}}
+      </mat-card-subtitle>
+    </mat-card>
+</div> -->
 
+
+      <!-- <mat-card-subtitle>
+        {{l.id}} -->
+      <!-- </mat-card-subtitle> -->
+      
+      <!-- <mat-card-subtitle>
+        {{l.todoListId}}
+      </mat-card-subtitle> -->
+      <!-- 
+      <mat-card-subtitle>
+        {{i.completed}}
+      </mat-card-subtitle>
+     -->
+
+<!-- TODO: premenovat inputy a form -->
 <form [formGroup]="todoItemForm" (ngSubmit)="onSubmit()">
   
     <div>

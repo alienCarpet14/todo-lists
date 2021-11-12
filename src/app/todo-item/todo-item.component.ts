@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ListService } from '../list.service';
+import { Item } from '../item';
 
 
 @Component({
@@ -15,7 +17,21 @@ export class TodoItemComponent implements OnInit {
   todoItemForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private _listService: ListService) { 
+  }
+
+  item;
+
+  loadListItems(a : number) {
+    this._listService.getListItems(a).subscribe(data => {
+      this.item = data;
+      console.log(this.item);
+      this.item.forEach(element => { 
+        console.log(element);
+        
+      });
+    });
+  }
 
   onInput(){
     console.log("input");

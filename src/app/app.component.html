@@ -1,4 +1,42 @@
+<p>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button> -->
+      <span>{{title}}</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>
 
 <app-todo-list></app-todo-list>
 <app-todo-item></app-todo-item>
+
+<!-- <span>{{a}}</span> -->
+
+<!-- <div>
+  <button (click) = loadList() > BIG SCARY BUTTON</button>
+  <mat-card *ngFor= "let l of list">
+    <mat-card-title>
+      {{l.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{l.id}}
+    </mat-card-subtitle>
+  </mat-card>
+</div> -->
+
+<div>
+  <!-- <button (click) = loadUser() > BIG SCARY BUTTON</button> -->
+  <mat-card *ngFor= "let l of list">
+    <mat-card-title>
+      {{l.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{l.id}}
+    </mat-card-subtitle>
+  </mat-card>
+</div>
+
 <router-outlet></router-outlet>
