@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -29,10 +30,15 @@ import { TodoItemComponent } from './todo-item/todo-item.component'
 import { ListService } from './list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { DatePipe } from '@angular/common';
+import { SearchPipe } from './search.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +59,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatToolbarModule,
     MatDividerModule,
     MatCardModule,
+    FormsModule
     
   ],
-  providers: [HttpClientModule,ListService,],
+  providers: [HttpClientModule,ListService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

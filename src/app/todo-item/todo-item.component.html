@@ -8,8 +8,15 @@
       <!-- nedokoncene -->
     </div>
 
+    <div class="form-group">
+      <label for="search-text">Search Text</label>
+      <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+        [(ngModel)]="searchText" placeholder="Enter text to search" 
+        autofocus>
+    </div>
+
 <div>
-    <mat-card *ngFor= "let i of item" [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
+    <mat-card *ngFor= "let i of item | search: searchText"  [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
       <!-- i.id -->
       <mat-card-title>
         {{i.title}}
@@ -22,6 +29,7 @@
       </mat-card-footer>
       <mat-card-footer>
         {{i.deadline}}
+        <!-- todo -->
         <button mat-stroked-button color="primary" value="delete"> delete </button>
         <button mat-stroked-button color="primary" value="toggleComplete"> toggleComplete </button>
       </mat-card-footer>
