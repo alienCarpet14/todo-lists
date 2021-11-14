@@ -2,23 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListService } from '../list.service';
 import { List } from '../list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
-export class TodoListComponent {
+
+export class TodoListComponent implements OnInit{
 
   //added line to tsconfig.json -> "strictPropertyInitialization": false
   todoListForm: FormGroup;       
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private _listService: ListService) { 
+  constructor(private formBuilder: FormBuilder, private _listService: ListService, private router: Router) { 
   }
 
   list;
 
+  onSelect(todoList){
+    this.router.navigate(['/list',todoList.id])
+  }
   loadList() {
     this._listService.getList().subscribe(data => {
       this.list = data;
@@ -43,6 +48,15 @@ export class TodoListComponent {
     });
   }
 
+
+  // toggleCompleted(){ //i
+  //   // if(this.item.completed == false)
+  //   // this.item.completed = true;
+  //   // else 
+  //   // this.item.completed = false;
+  //   console.log(event?.target)
+  // }
+
   
 
   onInput(){
@@ -55,6 +69,8 @@ export class TodoListComponent {
          Validators.required,
         Validators.minLength(2)]],
     });
+    
+    this.loadList();
 }
 
 // convenience getter for easy access to form fields
@@ -78,6 +94,7 @@ onReset() {
 }
 
 }
+
 
 
 

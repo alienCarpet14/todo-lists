@@ -7,15 +7,27 @@
       <span>{{title}}</span>
       <span class="example-spacer"></span>
     </mat-toolbar-row>
+    
   </mat-toolbar>
+  
+  <mat-button-toggle-group name="view" aria-label="View">
+    <mat-button-toggle value="home" routerLink="/list" routerLinkActive= "active" >Home</mat-button-toggle>
+    <!-- <mat-button-toggle value="tasks" routerLink="/list-items" routerLinkActive= "inactive" >Tasks</mat-button-toggle> -->
+  </mat-button-toggle-group>
 </p>
 
-<app-todo-list></app-todo-list>
-<app-todo-item></app-todo-item>
 
 <!-- <span>{{a}}</span> -->
 
-<!-- <div>
+
+
+
+<!-- <app-todo-list></app-todo-list> -->
+<router-outlet></router-outlet>
+<!-- <app-todo-item></app-todo-item> -->
+
+
+<!-- <div *ngIf >
   <button (click) = loadList() > BIG SCARY BUTTON</button>
   <mat-card *ngFor= "let l of list">
     <mat-card-title>
@@ -27,16 +39,3 @@
   </mat-card>
 </div> -->
 
-<div>
-  <!-- <button (click) = loadUser() > BIG SCARY BUTTON</button> -->
-  <mat-card *ngFor= "let l of list">
-    <mat-card-title>
-      {{l.title}}
-    </mat-card-title>
-    <mat-card-subtitle>
-      {{l.id}}
-    </mat-card-subtitle>
-  </mat-card>
-</div>
-
-<router-outlet></router-outlet>

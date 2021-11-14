@@ -22,4 +22,6 @@ export class ListService {
   getListItems(a : number) : Observable<Item[]>{
     return this.http.get<Item[]>(this._api + "/" + a + "/todo-items");
   }
+
+  
 }

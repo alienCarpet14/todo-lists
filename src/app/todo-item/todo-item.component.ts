@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ListService } from '../list.service';
 import { Item } from '../item';
-
-
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
@@ -16,14 +17,22 @@ export class TodoItemComponent implements OnInit {
   
   todoItemForm: FormGroup;
   submitted = false;
+  private sub: any;
 
-  constructor(private formBuilder: FormBuilder, private _listService: ListService) { 
+  constructor(private formBuilder: FormBuilder, private _listService: ListService, private route: ActivatedRoute,  private router: Router, ) { 
   }
+
+  onSelect(a){
+    alert(a);
+    this.router.navigate(['/list',a]);
+  }
+
+ 
 
   item;
 
   loadListItems(a : number) {
-    this._listService.getListItems(a).subscribe(data => {
+    this.sub = this._listService.getListItems(a).subscribe(data => {
       this.item = data;
       console.log(this.item);
       this.item.forEach(element => { 
@@ -32,12 +41,33 @@ export class TodoItemComponent implements OnInit {
       });
     });
   }
+  
+  toggleCompleted(){ //i
+    // if(this.item.completed == false)
+    // this.item.completed = true;
+    // else 
+    // this.item.completed = false;
+    console.log(event?.target);
+    alert(event?.target);
+  }
+
 
   onInput(){
     console.log("input");
   }
-
+  id;
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id) this.id=parseInt(this.id);
+    this.loadListItems(this.id);
+    // this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    // this.sub = this.route.queryParams.subscribe(params => {
+    //   this.id = params['id'];
+    //   alert(params['id']);
+    //   console.log(params)
+    //   // alert(this.id);
+    // });
+
     this.todoItemForm = this.formBuilder.group({
         name: ['',[
           Validators.required,
@@ -72,6 +102,9 @@ onReset() {
     this.todoItemForm.reset();
 }
 
+ngOnDestroy() {
+  this.sub.unsubscribe();
+}
 
 }
 

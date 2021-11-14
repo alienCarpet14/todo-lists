@@ -1,24 +1,36 @@
- <p>todo-item works!</p>
-<!-- <div>
-    <button (click) = loadListItems() > BIG SCARY BUTTON</button>
-    <mat-card *ngFor= "let l of item" [style.background]="l.completed == 'True' ? 'greenyellow' : 'indianred'">
+
+  <!-- <button mat-stroked-button color="primary" value="previous" (click) = "onSelect(1)" >previous</button>
+  <button mat-stroked-button color="primary" value="next" (click) = "onSelect(3)" >next</button> -->
+
+
+    <div>
+      <!-- <button mat-raised-button color="primary" (click)="toggleShowCompleted()" >Dokončené</button> -->
+      <!-- nedokoncene -->
+    </div>
+
+<div>
+    <mat-card *ngFor= "let i of item" [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
+      <!-- i.id -->
       <mat-card-title>
-        {{l.title}}
+        {{i.title}}
       </mat-card-title>
       <mat-card-content>
-        {{l.text}}
+        {{i.text}}
       </mat-card-content>
       <mat-card-footer>
-        {{l.deadline}}
+        {{i.finished}}
       </mat-card-footer>
-      <mat-card-subtitle>
-        {{l.completed}}
-      </mat-card-subtitle>
+      <mat-card-footer>
+        {{i.deadline}}
+        <button mat-stroked-button color="primary" value="delete"> delete </button>
+        <button mat-stroked-button color="primary" value="toggleComplete"> toggleComplete </button>
+      </mat-card-footer>
+
+
     </mat-card>
-</div> -->
+</div>
 
-
-      <!-- <mat-card-subtitle>
+  <!-- <mat-card-subtitle>
         {{l.id}} -->
       <!-- </mat-card-subtitle> -->
       
@@ -31,34 +43,5 @@
       </mat-card-subtitle>
      -->
 
-<!-- TODO: premenovat inputy a form -->
-<form [formGroup]="todoItemForm" (ngSubmit)="onSubmit()">
-  
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Meno</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      
-    </div>
-    
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Priezvisko</mat-label>
-        <input matInput formControlName="surname">
-      </mat-form-field>
-      
-    </div>
-    
-    <mat-form-field appearance="fill">
-      <mat-label>Dátum narodenia</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field> 
-    
-    <div>
-      <button mat-raised-button color="primary">Odoslať</button>
-    </div>
-    </form>
+     <!--  -->
 
