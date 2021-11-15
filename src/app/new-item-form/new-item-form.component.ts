@@ -23,28 +23,21 @@ export class NewItemFormComponent implements OnInit {
 
 
   ngOnInit() {
-    // if(this.route.snapshot.paramMap.get('id'))
-    // this.todoListId = parseInt(this.route.snapshot.paramMap.get('id'));
     
     this.todoListId = this.route.snapshot.paramMap.get('id');
     if(this.todoListId) this.todoListId=parseInt(this.todoListId);
 
     this.registerForm = this.formBuilder.group({
         title: 
-        // '',
         ['',[
           Validators.required,
           Validators.minLength(2)]],
         text: 
-        // '',
         ['',[
           Validators.required,
           Validators.minLength(2)]],
           deadline: 
-        // '',
         ['', Validators.required],
-        // validates date format yyyy-mm-dd
-        // dob: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
         completed : ['false'],
         id: [''],
         todoListId: [''],
@@ -54,15 +47,11 @@ export class NewItemFormComponent implements OnInit {
 id;
 todoListId;
 
-// convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; 
 return this.registerForm.controls}
 
 onSubmit() {
     this.submitted = true;
-    // alert(this.registerForm)
-
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
         return;
     }
@@ -73,14 +62,11 @@ onSubmit() {
           response => console.log(response),
           error => console.log(error)
         );
-        // return this.http.post<any>(this._api + "/" + a + "/todo-items", itemData);
-    // alert(this.registerForm.value);
     this.registerForm.value.todoListId = this.todoListId;
     this.registerForm.value.id = this.id;
     
       
     
-    // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
 }
 

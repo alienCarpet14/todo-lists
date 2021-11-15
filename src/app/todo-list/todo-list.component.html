@@ -1,57 +1,10 @@
 <div (load)="loadList()">
-  <!-- tu dam redirect na parametricky  -->
   <mat-card *ngFor= "let l of list" (click) = "onSelect(l)" [style.cursor]="'pointer'" >
-    <!-- <mat-card *ngFor= "let l of list" (click) = 
-       loadListItems(l.id)> -->
-      <mat-card-title>
-        {{l.title}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        {{l.id}}
-      </mat-card-subtitle>
+    <mat-card-title>
+      {{l.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{l.id}}
+    </mat-card-subtitle>
     </mat-card>
 </div>
-
-
-
-
-  <!-- <mat-card-subtitle>
-        {{l.id}} -->
-      <!-- </mat-card-subtitle> -->
-      
-      <!-- <mat-card-subtitle>
-        {{l.todoListId}}
-      </mat-card-subtitle> -->
-      <!-- 
-      <mat-card-subtitle>
-        {{i.completed}}
-      </mat-card-subtitle>
-     -->
-
-     <!--  -->
-
-<!-- <form [formGroup]="todoListForm" (ngSubmit)="onSubmit()">
-  
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Meno</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      pridanie     "noImplicitAny": false,
- do tsconfig.json 
-      <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
-      class="alert alert-danger">
-        <div *ngIf="f['name'].errors?.required">
-          Name is required.
-        </div>
-        <div *ngIf="f['name'].errors?.minlength">
-          Name must be at least 2 characters long.
-        </div>
-      </div>
-       
-    </div>
-    
-    <div>
-      <button mat-raised-button color="primary">Odoslať</button>
-    </div>
-</form> -->

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListService } from '../list.service';
 import { List } from '../list';
 import { Router } from '@angular/router';
@@ -12,11 +11,8 @@ import { Router } from '@angular/router';
 
 export class TodoListComponent implements OnInit{
 
-  //added line to tsconfig.json -> "strictPropertyInitialization": false
-  todoListForm: FormGroup;       
-  submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private _listService: ListService, private router: Router) { 
+  constructor( private _listService: ListService, private router: Router) { 
   }
 
   list;
@@ -47,16 +43,6 @@ export class TodoListComponent implements OnInit{
       });
     });
   }
-
-
-  // toggleCompleted(){ //i
-  //   // if(this.item.completed == false)
-  //   // this.item.completed = true;
-  //   // else 
-  //   // this.item.completed = false;
-  //   console.log(event?.target)
-  // }
-
   
 
   onInput(){
@@ -64,35 +50,8 @@ export class TodoListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.todoListForm = this.formBuilder.group({
-        name: ['',[
-         Validators.required,
-        Validators.minLength(2)]],
-    });
-    
     this.loadList();
-}
-
-// convenience getter for easy access to form fields
-get f() { return this.todoListForm.controls; }
-
-onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.todoListForm.invalid) {
-        return;
-    }
-
-    // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.todoListForm.value, null, 4));
-}
-
-onReset() {
-    this.submitted = false;
-    this.todoListForm.reset();
-}
-
+  }
 
 
 }

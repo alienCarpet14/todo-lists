@@ -1,60 +1,37 @@
-
-  <!-- <button mat-stroked-button color="primary" value="previous" (click) = "onSelect(1)" >previous</button>
-  <button mat-stroked-button color="primary" value="next" (click) = "onSelect(3)" >next</button> -->
-
-
-    <div>
-      <!-- <button mat-raised-button color="primary" (click)="toggleShowCompleted()" >Dokončené</button> -->
-      <!-- nedokoncene -->
-      <app-new-item-form></app-new-item-form>
-    </div>
-
-    <div class="form-group">
-      <label for="search-text">Search Text</label>
-      <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
-        [(ngModel)]="searchText" placeholder="Enter text to search" 
-        autofocus>
-    </div>
-    <mat-button-toggle-group [(ngModel)]="status" name="filter-text" id = "filter-text" aria-label="Font Style">
-      <mat-button-toggle value="">Both</mat-button-toggle>
-      <mat-button-toggle value="true">Finished</mat-button-toggle>
-      <mat-button-toggle value="false">Unfinished</mat-button-toggle>
-    </mat-button-toggle-group>
 <div>
-    <mat-card *ngFor= "let i of item | search: searchText | filter: status " [style.background]="i.completed !== true ?  'indianred' : 'greenyellow'" (click)="toggleCompleted()">  
-      <!-- i.id -->
-      <mat-card-title>
-        {{i.title}}
-      </mat-card-title>
-      <mat-card-content>
-        {{i.text}}
-      </mat-card-content>
-      <mat-card-footer>
-        {{i.finished}}
-      </mat-card-footer>
-      <mat-card-footer>
-        {{i.deadline}}
-        <!-- todo -->
-        <button mat-stroked-button color="primary" value="delete"> delete </button>
-        <button mat-stroked-button color="primary" value="toggleComplete"> toggleComplete </button>
-      </mat-card-footer>
-
-
-    </mat-card>
+  <app-new-item-form></app-new-item-form>
 </div>
 
-  <!-- <mat-card-subtitle>
-        {{l.id}} -->
-      <!-- </mat-card-subtitle> -->
-      
-      <!-- <mat-card-subtitle>
-        {{l.todoListId}}
-      </mat-card-subtitle> -->
-      <!-- 
-      <mat-card-subtitle>
-        {{i.completed}}
-      </mat-card-subtitle>
-     -->
+<div class="form-group">
+  <label for="search-text">Search Text</label>
+  <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+    [(ngModel)]="searchText" placeholder="Enter text to search" 
+    autofocus>
+</div>
 
-     <!--  -->
+<mat-button-toggle-group [(ngModel)]="status" name="filter-text" id = "filter-text" aria-label="Font Style">
+  <mat-button-toggle value="">Both</mat-button-toggle>
+  <mat-button-toggle value="true">Finished</mat-button-toggle>
+  <mat-button-toggle value="false">Unfinished</mat-button-toggle>
+</mat-button-toggle-group>
+
+<div>
+  <mat-card *ngFor= "let i of item | search: searchText | filter: status " [style.background]="i.completed !== true ?  'indianred' : 'greenyellow'" (click)="toggleCompleted()">  
+    <mat-card-title>
+      {{i.title}}
+    </mat-card-title>
+    <mat-card-content>
+      {{i.text}}
+    </mat-card-content>
+    <mat-card-footer>
+      {{i.finished}}
+    </mat-card-footer>
+    <mat-card-footer>
+      {{i.deadline}}
+      <!-- <button mat-stroked-button color="primary" value="delete"> delete </button>
+      <button mat-stroked-button color="primary" value="toggleComplete"> toggleComplete </button> -->
+    </mat-card-footer>
+  </mat-card>
+</div>
+
 

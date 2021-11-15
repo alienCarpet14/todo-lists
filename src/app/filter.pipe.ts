@@ -24,15 +24,9 @@ export class FilterPipe implements PipeTransform {
         return items;
       }
   
-      // return items.filter(item => {
-      //   // console.log(it);
-      //   return item['completed'];
-        
-      
       status = status.toLocaleLowerCase();
   
       return items.filter(item => {
-        // console.log(it);
         return String(item['completed']).toLocaleLowerCase().indexOf(status.toLocaleLowerCase()) !== -1 ;
       });
     }

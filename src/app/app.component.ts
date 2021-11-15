@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ListService } from './list.service';
-import { List } from './list';
 
 
 

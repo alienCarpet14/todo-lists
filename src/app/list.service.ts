@@ -14,8 +14,7 @@ export class ListService {
   ) {}
 
   private _api: string =  'https://61899d92d0821900178d7a64.mockapi.io/todo-lists';
-  // teams$ = this.http.get(this.api);
-  // TODO: rename
+
   getList(): Observable<List[]> {  
     return this.http.get<List[]>(this._api);
   } 
