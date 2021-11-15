@@ -14,9 +14,13 @@
         [(ngModel)]="searchText" placeholder="Enter text to search" 
         autofocus>
     </div>
-
+    <mat-button-toggle-group [(ngModel)]="status" name="filter-text" id = "filter-text" aria-label="Font Style">
+      <mat-button-toggle value="">Both</mat-button-toggle>
+      <mat-button-toggle value="true">Finished</mat-button-toggle>
+      <mat-button-toggle value="false">Unfinished</mat-button-toggle>
+    </mat-button-toggle-group>
 <div>
-    <mat-card *ngFor= "let i of item | search: searchText"  [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
+    <mat-card *ngFor= "let i of item | search: searchText | filter: status "  [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
       <!-- i.id -->
       <mat-card-title>
         {{i.title}}

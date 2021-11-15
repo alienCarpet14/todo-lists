@@ -32,6 +32,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { DatePipe } from '@angular/common';
 import { SearchPipe } from './search.pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SearchPipe } from './search.pipe';
     AppComponent,
     routingComponents,
     SearchPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

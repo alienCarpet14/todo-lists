@@ -18,7 +18,8 @@ export class TodoItemComponent implements OnInit {
   todoItemForm: FormGroup;
   submitted = false;
   private sub: any;
-  searchText : any;
+  searchText : string;
+  status: string;
 
   constructor(private formBuilder: FormBuilder, private _listService: ListService, private route: ActivatedRoute,  private router: Router, ) { 
   }
