@@ -1,6 +1,6 @@
 <div (load)="loadList()">
   <!-- tu dam redirect na parametricky  -->
-  <mat-card *ngFor= "let l of list" (click) = "onSelect(l)" >
+  <mat-card *ngFor= "let l of list" (click) = "onSelect(l)" [style.cursor]="'pointer'" >
     <!-- <mat-card *ngFor= "let l of list" (click) = 
        loadListItems(l.id)> -->
       <mat-card-title>
