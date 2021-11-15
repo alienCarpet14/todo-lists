@@ -6,6 +6,7 @@ import { Item } from '../item';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',

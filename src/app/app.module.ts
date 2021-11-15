@@ -33,6 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DatePipe } from '@angular/common';
 import { SearchPipe } from './search.pipe';
 import { FilterPipe } from './filter.pipe';
+import { NewItemFormComponent } from './new-item-form/new-item-form.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FilterPipe } from './filter.pipe';
     routingComponents,
     SearchPipe,
     FilterPipe,
+    NewItemFormComponent,
   ],
   imports: [
     BrowserModule,

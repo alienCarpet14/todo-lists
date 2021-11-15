@@ -23,5 +23,10 @@ export class ListService {
     return this.http.get<Item[]>(this._api + "/" + a + "/todo-items");
   }
 
+  postItem(itemData, a){
+    return this.http.post<any>(this._api + "/" + a + "/todo-items", itemData);
+
+  }
+
   
 }
