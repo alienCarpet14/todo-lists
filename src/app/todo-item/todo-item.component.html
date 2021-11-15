@@ -21,7 +21,7 @@
       <mat-button-toggle value="false">Unfinished</mat-button-toggle>
     </mat-button-toggle-group>
 <div>
-    <mat-card *ngFor= "let i of item | search: searchText | filter: status "  [style.background]="i.completed ? 'greenyellow' : 'indianred'" (click)="toggleCompleted()">  
+    <mat-card *ngFor= "let i of item | search: searchText | filter: status " [style.background]="i.completed !== true ?  'indianred' : 'greenyellow'" (click)="toggleCompleted()">  
       <!-- i.id -->
       <mat-card-title>
         {{i.title}}
