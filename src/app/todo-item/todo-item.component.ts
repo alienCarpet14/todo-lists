@@ -37,14 +37,10 @@ export class TodoItemComponent implements OnInit {
 //     this.dialog.open(NewItemFormComponent, dialogConfig);
 // }
 
-  onSelect(a){
-    alert(a);
-    this.router.navigate(['/list',a]);
-  }
 
-
-  loadListItems(a : number) {
-    this.sub = this._listService.getListItems(a).subscribe(data => {
+  //nacitanie todo-itemov pre dany list
+  loadListItems(listId : number) {
+    this.sub = this._listService.getListItems(listId).subscribe(data => {
       this.item = data;
       console.log(this.item);
       this.item.forEach(element => { 
@@ -58,7 +54,7 @@ export class TodoItemComponent implements OnInit {
   toggleCompleted(){ 
   }
 
-  
+  //ziskanie id listu z url a nacitanie todo-itemov pre dany list
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if(this.id) this.id=parseInt(this.id);
