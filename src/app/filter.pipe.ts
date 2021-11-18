@@ -4,6 +4,7 @@ import { Item } from './item';
 @Pipe({
   name: 'filter'
 })
+//filtering items whether finished or unfinished
 export class FilterPipe implements PipeTransform {
 
   
@@ -16,18 +17,18 @@ export class FilterPipe implements PipeTransform {
    */
     
 
-  transform(items: Item[], status: string): any[] {
+  transform(items: Item[], itemCompleted: string): any[] {
     if (!items) {
       return [];
     }
-    if (!status) {
+    if (!itemCompleted) {
       return items;
     }
 
-    status = status.toLocaleLowerCase();
+    itemCompleted = itemCompleted.toLocaleLowerCase();
 
     return items.filter(item => {
-      return String(item['completed']).toLocaleLowerCase().indexOf(status.toLocaleLowerCase()) !== -1 ;
+      return String(item['completed']).toLocaleLowerCase().indexOf(itemCompleted.toLocaleLowerCase()) !== -1 ;
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { List } from './list';
 import { ListService } from './list.service';
 
 
@@ -12,11 +13,11 @@ export class AppComponent {
   title = 'todo-lists';
 
   constructor(private _listService: ListService) {}
-  list;
+  lists: List[];
 
   loadList() {
     this._listService.getList().subscribe(data => {
-      this.list = data;
+      this.lists = data;
       // console.log(this.list);
       // this.list.forEach(element => { 
       //   console.log(element);

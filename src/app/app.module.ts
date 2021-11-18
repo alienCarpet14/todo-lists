@@ -18,12 +18,9 @@ import {MatCardModule} from '@angular/material/card';
 
 
 import { MatButtonModule } from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatDividerModule } from '@angular/material/divider';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoItemComponent } from './todo-item/todo-item.component'
 import { ListService } from './list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 

@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit{
   lists: List[];  
   item: Item[];
 
-  onSelect(todoList){
+  onSelect(todoList: List){
     this.router.navigate(['/list',todoList.id])
   }
   loadList() {
