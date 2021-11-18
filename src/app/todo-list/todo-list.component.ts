@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
 import { List } from '../list';
 import { Router } from '@angular/router';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,26 +16,26 @@ export class TodoListComponent implements OnInit{
   constructor( private _listService: ListService, private router: Router) { 
   }
 
-  list;
+  lists: List[];  
+  item: Item[];
 
   onSelect(todoList){
     this.router.navigate(['/list',todoList.id])
   }
   loadList() {
     this._listService.getList().subscribe(data => {
-      this.list = data;
-      console.log(this.list);
-      this.list.forEach(element => { 
+      this.lists = data;
+      console.log(this.lists);
+      this.lists.forEach(element => { 
         console.log(element);
         
       });
     });
   }
 
-  item;
 
-  loadListItems(a : number) {
-    this._listService.getListItems(a).subscribe(data => {
+  loadListItems(listId : number) {
+    this._listService.getListItems(listId).subscribe(data => {
       this.item = data;
       console.log(this.item);
       this.item.forEach(element => { 
@@ -44,10 +45,6 @@ export class TodoListComponent implements OnInit{
     });
   }
   
-
-  onInput(){
-    console.log("input");
-  }
 
   ngOnInit() {
     this.loadList();

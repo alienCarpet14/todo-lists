@@ -1,10 +1,10 @@
 <div (load)="loadList()">
-  <mat-card *ngFor= "let l of list" (click) = "onSelect(l)" [style.cursor]="'pointer'" >
+  <mat-card *ngFor= "let list of lists" (click) = "onSelect(list)" [style.cursor]="'pointer'" >
     <mat-card-title>
-      {{l.title}}
+      {{list.title}}
     </mat-card-title>
     <mat-card-subtitle>
-      {{l.id}}
+      {{list.id}}
     </mat-card-subtitle>
     </mat-card>
 </div>
