@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+// import {MatDialog, MatDialogConfig} from "@angular/material";
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { NewItemFormComponent } from '../new-item-form/new-item-form.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -10,20 +14,34 @@ import { Router } from '@angular/router';
 })
 export class TodoItemComponent implements OnInit {
 
-  
-  
   private sub: any;
-  searchText : string;
-  status: string;
+  //properties pre filtrovanie zobrazenia todo-itemov
+  searchText : string;  // vyhľadávanie / filtrovanie podľa textu
+  filterStatus: string; // completed? true : false
 
-  constructor( private _listService: ListService, private route: ActivatedRoute,  private router: Router, ) { 
+  id;  // id of todo-list
+  item; // todo-item instance
+  
+
+
+  constructor( private _listService: ListService, private route: ActivatedRoute,  private router: Router, private dialog: MatDialog ) { 
   }
+
+//   openDialog() {
+
+//     const dialogConfig = new MatDialogConfig();
+
+//     dialogConfig.disableClose = true;
+//     dialogConfig.autoFocus = true;
+
+//     this.dialog.open(NewItemFormComponent, dialogConfig);
+// }
 
   onSelect(a){
     alert(a);
     this.router.navigate(['/list',a]);
   }
-  item;
+
 
   loadListItems(a : number) {
     this.sub = this._listService.getListItems(a).subscribe(data => {
@@ -31,17 +49,16 @@ export class TodoItemComponent implements OnInit {
       console.log(this.item);
       this.item.forEach(element => { 
         console.log(element);
-        
       });
     });
   }
+
+
   // TODO:
   toggleCompleted(){ 
-    console.log(event?.target);
-    alert(event?.target);
   }
 
-  id;
+  
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if(this.id) this.id=parseInt(this.id);

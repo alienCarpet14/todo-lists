@@ -1,6 +1,10 @@
-<p>new-item-form works!</p>
+<!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+<h2 mat-dialog-title>DIALOG</h2>
+
+<mat-dialog-content [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()"> -->
 
     <div>
       <mat-form-field appearance="fill">
@@ -28,4 +32,5 @@
     <div>
       <button mat-raised-button color="primary">Odoslať</button>
     </div>
-    </form>
+    <!-- </form> -->
+    </mat-dialog-content>

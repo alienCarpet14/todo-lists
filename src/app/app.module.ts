@@ -9,11 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -34,6 +31,8 @@ import { DatePipe } from '@angular/common';
 import { SearchPipe } from './search.pipe';
 import { FilterPipe } from './filter.pipe';
 import { NewItemFormComponent } from './new-item-form/new-item-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -50,20 +49,17 @@ import { NewItemFormComponent } from './new-item-form/new-item-form.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatSliderModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
     MatToolbarModule,
-    MatDividerModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
     
   ],
   providers: [HttpClientModule,ListService, DatePipe],

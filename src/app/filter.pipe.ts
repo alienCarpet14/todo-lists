@@ -16,20 +16,20 @@ export class FilterPipe implements PipeTransform {
    */
     
 
-    transform(items: Item[], status: string): any[] {
-      if (!items) {
-        return [];
-      }
-      if (!status) {
-        return items;
-      }
-  
-      status = status.toLocaleLowerCase();
-  
-      return items.filter(item => {
-        return String(item['completed']).toLocaleLowerCase().indexOf(status.toLocaleLowerCase()) !== -1 ;
-      });
+  transform(items: Item[], status: string): any[] {
+    if (!items) {
+      return [];
     }
+    if (!status) {
+      return items;
+    }
+
+    status = status.toLocaleLowerCase();
+
+    return items.filter(item => {
+      return String(item['completed']).toLocaleLowerCase().indexOf(status.toLocaleLowerCase()) !== -1 ;
+    });
+  }
 
 
 }

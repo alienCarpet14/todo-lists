@@ -17,11 +17,10 @@ export class AppComponent {
   loadList() {
     this._listService.getList().subscribe(data => {
       this.list = data;
-      console.log(this.list);
-      this.list.forEach(element => { 
-        console.log(element);
-        
-      });
+      // console.log(this.list);
+      // this.list.forEach(element => { 
+      //   console.log(element);
+      // });
     });
   }
 }

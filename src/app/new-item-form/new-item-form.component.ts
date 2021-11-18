@@ -15,11 +15,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewItemFormComponent implements OnInit {
 
-  registerForm: FormGroup;
+  addItemForm: FormGroup;
   submitted = false;
+  sub;
+
+  id;
+  todoListId;
 
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private _listService: ListService) { }
 
+  
 
 
   ngOnInit() {
@@ -27,7 +32,8 @@ export class NewItemFormComponent implements OnInit {
     this.todoListId = this.route.snapshot.paramMap.get('id');
     if(this.todoListId) this.todoListId=parseInt(this.todoListId);
 
-    this.registerForm = this.formBuilder.group({
+    //validacie
+    this.addItemForm = this.formBuilder.group({
         title: 
         ['',[
           Validators.required,
@@ -38,41 +44,40 @@ export class NewItemFormComponent implements OnInit {
           Validators.minLength(2)]],
           deadline: 
         ['', Validators.required],
-        completed : ['false'],
+        completed : [false],
         id: [''],
         todoListId: [''],
     });
 }
 
-id;
-todoListId;
-
-get f() { return this.registerForm.controls; 
-return this.registerForm.controls}
+//getter pre lahsi pristup ku form fields
+get f() { 
+  return this.addItemForm.controls; 
+}
 
 onSubmit() {
     this.submitted = true;
-    if (this.registerForm.invalid) {
+    if (this.addItemForm.invalid) {
         return;
-    }
+      }
+    this.sub = this._listService.postItem(this.addItemForm.value,this.todoListId)
+    .subscribe(data => {
+      this.ngOnInit();
 
-      
-        this._listService.postItem(this.registerForm.value,this.todoListId)
-        .subscribe(
-          response => console.log(response),
-          error => console.log(error)
-        );
-    this.registerForm.value.todoListId = this.todoListId;
-    this.registerForm.value.id = this.id;
+    });
+    // window.location.reload();  //reload stranky
     
-      
-    
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-}
+
+  }
 
 onReset() {
     this.submitted = false;
-    this.registerForm.reset();
+    this.addItemForm.reset();
 }
+
+ngOnDestroy() {
+  this.sub.unsubscribe();
+}
+
 
 }
