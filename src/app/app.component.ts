@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { List } from './list';
 import { ListService } from './list.service';
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,11 +14,8 @@ export class AppComponent {
   lists: List[];
 
   loadList() {
-    this._listService.getList().subscribe(data => {
+    this._listService.getList().subscribe((data) => {
       this.lists = data;
     });
   }
 }
-
-
-

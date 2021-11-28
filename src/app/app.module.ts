@@ -21,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 
-// import { materialModules } from '@angular/material';
 import { ListService } from './list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -29,19 +28,6 @@ import { DatePipe } from '@angular/common';
 import { SearchPipe } from './search.pipe';
 import { FilterPipe } from './filter.pipe';
 import { NewItemFormComponent } from './new-item-form/new-item-form.component';
-
-materialModules: [
-  MatFormFieldModule,
-  MatInputModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatCardModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatIconModule,
-  MatToolbarModule,
-  MatDialogModule,
-];
 
 @NgModule({
   declarations: [
@@ -56,6 +42,7 @@ materialModules: [
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -66,7 +53,6 @@ materialModules: [
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
-    FormsModule,
     MatDialogModule,
   ],
   providers: [HttpClientModule, ListService, DatePipe],
