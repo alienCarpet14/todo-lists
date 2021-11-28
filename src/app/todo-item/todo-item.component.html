@@ -1,9 +1,12 @@
 <div>
   <!-- <app-new-item-form></app-new-item-form> -->
+  <button mat-raised-button (click)="openDialog()">Add todo item</button>
+  <!-- <button mat-raised-button >Open dialog</button> -->
+
 </div>
 
 <div class="form-group">
-  <label for="search-text">Search Text</label>
+  <label for="search-text">Search</label>
   <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
     [(ngModel)]="searchText" placeholder="Enter text to search" 
     autofocus>
@@ -27,7 +30,8 @@
       {{i.finished}}
     </mat-card-footer>
     <mat-card-footer>
-      {{i.deadline}}
+      <!-- {{stringDateFormat(i.deadline)}} -->
+      {{stringDateFormat(i.deadline)}}
       <!-- <button mat-stroked-button color="primary" value="delete" onclick="deleteTask()"> delete </button> -->
       <!-- <button mat-stroked-button color="primary" value="toggleComplete" onclick="completeTask()"> toggleComplete </button> -->
     </mat-card-footer>

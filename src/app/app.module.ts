@@ -9,18 +9,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-import {MatCardModule} from '@angular/material/card';
-
-
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+
+// import { materialModules } from '@angular/material';
 import { ListService } from './list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -28,9 +29,19 @@ import { DatePipe } from '@angular/common';
 import { SearchPipe } from './search.pipe';
 import { FilterPipe } from './filter.pipe';
 import { NewItemFormComponent } from './new-item-form/new-item-form.component';
-import { MatDialogModule } from '@angular/material/dialog';
 
-
+materialModules: [
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCardModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatDialogModule,
+];
 
 @NgModule({
   declarations: [
@@ -56,10 +67,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatToolbarModule,
     MatCardModule,
     FormsModule,
-    MatDialogModule
-    
+    MatDialogModule,
   ],
-  providers: [HttpClientModule,ListService, DatePipe],
-  bootstrap: [AppComponent]
+  providers: [HttpClientModule, ListService, DatePipe],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

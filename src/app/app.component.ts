@@ -18,10 +18,6 @@ export class AppComponent {
   loadList() {
     this._listService.getList().subscribe(data => {
       this.lists = data;
-      // console.log(this.list);
-      // this.list.forEach(element => { 
-      //   console.log(element);
-      // });
     });
   }
 }

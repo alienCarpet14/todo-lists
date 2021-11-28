@@ -9,51 +9,37 @@ import { Item } from '../item';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
+export class TodoListComponent implements OnInit {
+  constructor(private _listService: ListService, private router: Router) {}
 
-export class TodoListComponent implements OnInit{
-
-
-  constructor( private _listService: ListService, private router: Router) { 
-  }
-
-  lists: List[];  
+  lists: List[];
   item: Item[];
 
-  onSelect(todoList: List){
-    this.router.navigate(['/list',todoList.id])
+  onSelect(todoList: List) {
+    this.router.navigate(['/list', todoList.id]);
   }
+
   loadList() {
-    this._listService.getList().subscribe(data => {
+    this._listService.getList().subscribe((data) => {
       this.lists = data;
       console.log(this.lists);
-      this.lists.forEach(element => { 
+      this.lists.forEach((element) => {
         console.log(element);
-        
       });
     });
   }
 
-
-  loadListItems(listId : number) {
-    this._listService.getListItems(listId).subscribe(data => {
+  loadListItems(listId: number) {
+    this._listService.getListItems(listId).subscribe((data) => {
       this.item = data;
       console.log(this.item);
-      this.item.forEach(element => { 
+      this.item.forEach((element) => {
         console.log(element);
-        
       });
     });
   }
-  
 
   ngOnInit() {
     this.loadList();
   }
-
-
 }
-
-
-
-
-

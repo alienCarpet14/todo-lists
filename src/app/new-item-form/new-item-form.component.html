@@ -1,11 +1,9 @@
 <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
 
 
-<h2 mat-dialog-title>DIALOG</h2>
-
-<mat-dialog-content [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
-<!-- <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()"> -->
-
+<mat-dialog-content>
+  <h2 mat-dialog-title>Add todo item</h2>
+<form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
@@ -30,7 +28,11 @@
     </mat-form-field> 
 
     <div>
-      <button mat-raised-button color="primary">Odoslať</button>
+      <mat-dialog-actions>
+        <button mat-raised-button color="primary" >ADD</button>
+        <button mat-raised-button mat-dialog-close color="primary">EXIT</button>
+        
+      </mat-dialog-actions>
     </div>
-    <!-- </form> -->
-    </mat-dialog-content>
+    </form>
+</mat-dialog-content>
