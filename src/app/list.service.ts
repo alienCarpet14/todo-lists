@@ -6,29 +6,37 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ListService {
+  constructor(private http: HttpClient) {}
 
-  constructor (
-    private http: HttpClient  
-  ) {}
+  private API_URL: string = environment.API_URL;
 
-  private API_URL: string =  'https://61899d92d0821900178d7a64.mockapi.io/todo-lists';
-
-  getList(): Observable<List[]> {  
+  getList(): Observable<List[]> {
     return this.http.get<List[]>(this.API_URL);
-  } 
-
-
-  getListItems(a : number) : Observable<Item[]>{
-    return this.http.get<Item[]>(this.API_URL + "/" + a + "/todo-items");
   }
 
-
-  postItem(itemData, a){
-    return this.http.post<Item[]>(this.API_URL + "/" + a + "/todo-items", itemData);
+  getListItems(list_id: number): Observable<Item[]> {
+    return this.http.get<Item[]>(this.API_URL + list_id + '/todo-items');
   }
- 
 
+  postItem(itemData, list_id) {
+    return this.http.post<Item[]>(
+      this.API_URL + list_id + '/todo-items',
+      itemData
+    );
+  }
+
+  putItem(list_id: number, item_id: number, itemData) {
+    //  { title: 'Angular PUT Request Example' };
+    return this.http.put<Item>(
+      this.API_URL + list_id + '/todo-items/' + item_id,
+      itemData
+    );
+  }
+
+  deleteItem(list_id, item_id) {
+    return this.http.delete(`${this.API_URL}${list_id}/todo-items/${item_id}`);
+  }
 }

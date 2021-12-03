@@ -52,17 +52,16 @@ export class NewItemFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.id);
-    console.log(this.todoListId);
     this.submitted = true;
     if (this.addItemForm.invalid) {
       return;
     }
+    console.log(this.addItemForm.value);
     this.sub = this._listService
       .postItem(this.addItemForm.value, this.todoListId)
       .subscribe((data) => {
         // this.ngOnInit();
-        // console.log(data);
+        console.log(data);
       });
     // window.location.reload();  //reload stranky
   }

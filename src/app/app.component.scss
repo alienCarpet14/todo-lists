@@ -1,6 +1,20 @@
+$darkcolor: rgb(50, 50, 60);
+$color: #94a0e3;
+
 .mat-card {
   cursor: pointer;
 }
 // .mat-card:hover {
 //   color: indigo;
 // }
+
+.navbar {
+  justify-content: space-between;
+}
+span {
+  padding-right: 1rem;
+  cursor: pointer;
+  &:hover {
+    color: darken($darkcolor, 10%);
+  }
+}

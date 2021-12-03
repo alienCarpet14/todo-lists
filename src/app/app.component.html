@@ -1,16 +1,20 @@
+<mat-spinner *ngIf="!isPageLoaded"></mat-spinner>
+<div *ngIf="isPageLoaded">
 <p>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>{{title}}</span>
-      <span class="example-spacer"></span>
-    </mat-toolbar-row>
-    
+  <mat-toolbar color="primary" class="navbar">
+      <div>{{title}}</div>
+      <div>
+        <!-- <span>home</span>
+        <span>back</span> -->
+        <span value="home" routerLink="/list" routerLinkActive="active" >Home</span>
+      </div>
   </mat-toolbar>
   
-  <mat-button-toggle-group name="view" aria-label="View">
+  <!-- <mat-button-toggle-group name="view" aria-label="View">
     <mat-button-toggle value="home" routerLink="/list" routerLinkActive= "active" >Home</mat-button-toggle>
-  </mat-button-toggle-group>
+  </mat-button-toggle-group> -->
 </p>
 
 
 <router-outlet></router-outlet>
+</div>

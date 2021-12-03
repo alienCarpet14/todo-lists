@@ -1,3 +1,20 @@
 mat-card {
   background: antiquewhite;
+  cursor: pointer;
+}
+
+span + span {
+  margin-left: 10px;
+}
+
+.items {
+  justify-content: space-between;
+}
+img {
+  height: 36px;
+  width: auto;
+}
+
+.pointer {
+  cursor: pointer;
 }

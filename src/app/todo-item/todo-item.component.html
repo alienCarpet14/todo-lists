@@ -1,9 +1,7 @@
 <div>
-  <!-- <app-new-item-form></app-new-item-form> -->
   <button mat-raised-button (click)="openDialog()">Add todo item</button>
-  <!-- <button mat-raised-button >Open dialog</button> -->
-
 </div>
+
 
 <div class="form-group">
   <label for="search-text">Search</label>
@@ -18,24 +16,16 @@
   <mat-button-toggle value="false">Unfinished</mat-button-toggle>
 </mat-button-toggle-group>
 
-<div>
-  <mat-card *ngFor= "let i of item | search: searchText | filter: filterStatus " [style.background]="i.completed !== true ?  'indianred' : 'greenyellow'" (click)="toggleCompleted()">  
-    <mat-card-title>
-      {{i.title}}
-    </mat-card-title>
-    <mat-card-content>
-      {{i.text}}
-    </mat-card-content>
-    <mat-card-footer>
-      {{i.finished}}
-    </mat-card-footer>
-    <mat-card-footer>
-      <!-- {{stringDateFormat(i.deadline)}} -->
-      {{stringDateFormat(i.deadline)}}
-      <!-- <button mat-stroked-button color="primary" value="delete" onclick="deleteTask()"> delete </button> -->
-      <!-- <button mat-stroked-button color="primary" value="toggleComplete" onclick="completeTask()"> toggleComplete </button> -->
-    </mat-card-footer>
-  </mat-card>
+<div class="items">
+  <div *ngFor="let i of item | search: searchText | filter: filterStatus" [style.background]="i.completed !== true ? 'indianred' : 'greenyellow'" >
+    <mat-checkbox  [checked]="i.completed" [(ngModel)]="i.completed" (change)="toggleCompleted(i.todoListId, i.id, i, i.completed)" class="custom-frame"></mat-checkbox>
+    <span>{{i.title}}</span>
+    <!-- <span>{{i.text}}</span> -->
+    <span>{{i.deadline}}</span>
+    <span class="pointer" (click)="deleteItem(i.todoListId, i.id)">&#x274C;</span>
+    <span class="pointer" (click)="showItemDetail()">&#11167;</span>
+    <div >{{i.text}} </div>
+  </div>
 </div>
 
 

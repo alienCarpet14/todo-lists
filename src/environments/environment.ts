@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://61899d92d0821900178d7a64.mockapi.io/todo-lists',
-
+  API_URL: 'https://61899d92d0821900178d7a64.mockapi.io/todo-lists/',
 };
 
 /*
