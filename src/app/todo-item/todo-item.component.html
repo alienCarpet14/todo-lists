@@ -16,16 +16,21 @@
   <mat-button-toggle value="false">Unfinished</mat-button-toggle>
 </mat-button-toggle-group>
 
-<div class="items">
-  <div *ngFor="let i of item | search: searchText | filter: filterStatus" [style.background]="i.completed !== true ? 'indianred' : 'greenyellow'" >
-    <mat-checkbox  [checked]="i.completed" [(ngModel)]="i.completed" (change)="toggleCompleted(i.todoListId, i.id, i, i.completed)" class="custom-frame"></mat-checkbox>
-    <span>{{i.title}}</span>
-    <!-- <span>{{i.text}}</span> -->
-    <span>{{i.deadline}}</span>
-    <span class="pointer" (click)="deleteItem(i.todoListId, i.id)">&#x274C;</span>
-    <span class="pointer" (click)="showItemDetail()">&#11167;</span>
-    <div >{{i.text}} </div>
-  </div>
-</div>
+<mat-list class="items">
+  <div class="itemInstance" *ngFor="let item of items | search: searchText | filter: filterStatus">
+    <div >
+      <mat-checkbox   [checked]="item.completed" [(ngModel)]="item.completed" (change)="toggleCompleted(item.todoListId, item.id, item, item.completed)" class="custom-frame">
+              <!-- <mat-divider></mat-divider> -->
+      </mat-checkbox>
+      <span style="margin-left: 1em;" >{{item.title}}</span>
+      <div class="right">
+      <span>{{item.deadline}}</span>
+      <span class="pointer" (click)="deleteItem(item.todoListId, item.id)">&#x274C;</span>
+      <span class="pointer" (click)="showItemDetail(item.id); ">&#11167;</span>
+      </div>
+      </div>
+      <div  [id]="item.id" style="display: none; padding: 20; margin: 60;" [style.display]="itemDetailDisplayed" >{{item.text}} </div>
+    </div>
+</mat-list>
 
 

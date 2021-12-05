@@ -6,8 +6,11 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { NewItemFormComponent } from '../new-item-form/new-item-form.component';
+
 import { DatePipe } from '@angular/common';
 import { Item } from '../item';
+import { ChangeDetectorRef } from '@angular/core';
+import { isDefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-todo-item',
@@ -21,15 +24,20 @@ export class TodoItemComponent implements OnInit {
   filterStatus: string; // completed? true : false
 
   id; // id of todo-list
-  item; // todo-item instance
+  items; // todo-item instance
 
   constructor(
     private _listService: ListService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private changeDetection: ChangeDetectorRef
   ) {}
+
+  // public trackItem(index: number, item: Item) {
+  //   return item.id;
+  // }
 
   openDialog() {
     this.dialog.open(NewItemFormComponent, {
@@ -38,12 +46,54 @@ export class TodoItemComponent implements OnInit {
     // window.location.reload();  //reload stranky
   }
 
-  showItemDetail() {}
+  //pomocna premmenna na ukladanie otvoreneho itemu
+  itemId: number = 0;
+  itemDetailDisplayed;
+  showItemDetail(itemId: number) {
+    console.log(
+      document.getElementById(String(itemId))!.previousElementSibling
+    );
+
+    if (this.itemId != 0) {
+      this.displayElement(this.itemId, 'none');
+      console.log(this.itemId);
+    }
+
+    if (this.itemId != 0 && this.itemId === itemId) {
+      this.displayElement(this.itemId, 'none');
+      console.log(this.itemId);
+      this.itemId = 0;
+      return;
+    }
+    this.itemId = itemId;
+    this.displayElement(this.itemId, 'block');
+    console.log(this.itemId);
+    console.log(
+      document.getElementById(String(itemId))!.previousElementSibling
+    );
+  }
+
+  displayElement(elementId: number, styleDisplayChoice: string) {
+    document.getElementById(String(elementId))!.style.display =
+      styleDisplayChoice;
+    if (styleDisplayChoice === 'block')
+      this.changeArrowIcon('\u2B9D', elementId);
+    if (styleDisplayChoice === 'none')
+      this.changeArrowIcon('\u2B9D', elementId);
+  }
+  changeArrowIcon(unicode: string, elementId: number) {
+    document.getElementById(
+      String(elementId)
+    )!.previousElementSibling!.lastElementChild!.lastElementChild!.innerHTML =
+      '\u2B9D';
+  }
+
   deleteItem(list_id: number, item_id: number) {
     let sub = this._listService
       .deleteItem(list_id, item_id)
       .subscribe(() => console.log('Delete successful'));
     sub.unsubscribe;
+    this.changeDetection.detectChanges();
   }
 
   // TODO:
@@ -84,8 +134,8 @@ export class TodoItemComponent implements OnInit {
   //nacitanie todo-itemov pre dany list
   loadListItems(listId: number) {
     this.sub = this._listService.getListItems(listId).subscribe((data) => {
-      this.item = data;
-      console.log(this.item);
+      this.items = data;
+      console.log(this.items);
       // this.item.forEach(element => {
       //   console.log(element.deadline)
       //   element.deadline |  DatePipe['shortDate'];

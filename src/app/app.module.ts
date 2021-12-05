@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 import { ListService } from './list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -60,6 +62,8 @@ import { NewItemFormComponent } from './new-item-form/new-item-form.component';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatTableModule,
+    MatDividerModule,
+    MatListModule,
   ],
   providers: [HttpClientModule, ListService, DatePipe],
   bootstrap: [AppComponent],
