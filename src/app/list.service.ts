@@ -28,6 +28,7 @@ export class ListService {
     );
   }
 
+  //used in changing item.completed boolean value
   putItem(list_id: number, item_id: number, itemData) {
     //  { title: 'Angular PUT Request Example' };
     return this.http.put<Item>(

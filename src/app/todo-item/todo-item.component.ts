@@ -9,7 +9,6 @@ import { NewItemFormComponent } from '../new-item-form/new-item-form.component';
 
 import { DatePipe } from '@angular/common';
 import { Item } from '../item';
-import { ChangeDetectorRef } from '@angular/core';
 import { isDefined } from '@angular/compiler/src/util';
 
 @Component({
@@ -23,16 +22,15 @@ export class TodoItemComponent implements OnInit {
   searchText: string; // vyhľadávanie / filtrovanie podľa textu
   filterStatus: string; // completed? true : false
 
-  id; // id of todo-list
-  items; // todo-item instance
+  list_id; // id of todo-list
+  items: Item[]; // array of todo-item objects
 
   constructor(
     private _listService: ListService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private datepipe: DatePipe,
-    private changeDetection: ChangeDetectorRef
+    private datepipe: DatePipe
   ) {}
 
   // public trackItem(index: number, item: Item) {
@@ -41,7 +39,7 @@ export class TodoItemComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(NewItemFormComponent, {
-      data: this.id,
+      data: this.list_id,
     });
     // window.location.reload();  //reload stranky
   }
@@ -79,13 +77,12 @@ export class TodoItemComponent implements OnInit {
     if (styleDisplayChoice === 'block')
       this.changeArrowIcon('\u2B9D', elementId);
     if (styleDisplayChoice === 'none')
-      this.changeArrowIcon('\u2B9D', elementId);
+      this.changeArrowIcon('\u2B9F', elementId);
   }
   changeArrowIcon(unicode: string, elementId: number) {
     document.getElementById(
       String(elementId)
-    )!.previousElementSibling!.lastElementChild!.lastElementChild!.innerHTML =
-      '\u2B9D';
+    )!.previousElementSibling!.lastElementChild!.lastElementChild!.innerHTML = unicode;
   }
 
   deleteItem(list_id: number, item_id: number) {
@@ -93,10 +90,9 @@ export class TodoItemComponent implements OnInit {
       .deleteItem(list_id, item_id)
       .subscribe(() => console.log('Delete successful'));
     sub.unsubscribe;
-    this.changeDetection.detectChanges();
   }
+  deleteItemInArray() {}
 
-  // TODO:
   toggleCompleted(
     list_id: number,
     item_id: number,
@@ -104,12 +100,8 @@ export class TodoItemComponent implements OnInit {
     isCompleted: boolean
   ) {
     let body: JSON;
-    // isCompleted = true;
-    console.log(isCompleted);
     body = JSON.parse(String(isCompleted));
-    console.log(body);
     item.completed = isCompleted;
-    // body = JSON.
     let sub = this._listService
       .putItem(list_id, item_id, item)
       .subscribe((data) => console.log('Success\n' + data));
@@ -126,9 +118,9 @@ export class TodoItemComponent implements OnInit {
 
   //ziskanie id listu z url a nacitanie todo-itemov pre dany list
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.id = parseInt(this.id);
-    this.loadListItems(this.id);
+    this.list_id = this.route.snapshot.paramMap.get('id');
+    if (this.list_id) this.list_id = parseInt(this.list_id);
+    this.loadListItems(this.list_id);
   }
 
   //nacitanie todo-itemov pre dany list
@@ -136,17 +128,18 @@ export class TodoItemComponent implements OnInit {
     this.sub = this._listService.getListItems(listId).subscribe((data) => {
       this.items = data;
       console.log(this.items);
-      // this.item.forEach(element => {
-      //   console.log(element.deadline)
-      //   element.deadline |  DatePipe['shortDate'];
-      //   let date = new Date(element.deadline);
-      //   date.toLocaleDateString('short');
-      //   console.log(date);
-      //   console.log(element);
-      //   console.log(element.deadline)
-      // });
     });
   }
+
+  // this.item.forEach(element => {
+  //   console.log(element.deadline)
+  //   element.deadline |  DatePipe['shortDate'];
+  //   let date = new Date(element.deadline);
+  //   date.toLocaleDateString('short');
+  //   console.log(date);
+  //   console.log(element);
+  //   console.log(element.deadline)
+  // });
 
   ngOnDestroy() {
     this.sub.unsubscribe();
