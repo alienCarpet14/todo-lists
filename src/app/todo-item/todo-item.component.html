@@ -24,7 +24,7 @@
       </mat-checkbox>
       <span style="margin-left: 1em;" >{{item.title}}</span>
       <div class="right">
-      <span>{{item.deadline}}</span>
+      <span>{{item.deadline | date}}</span>
       <span class="pointer" (click)="deleteItem(item.todoListId, item.id)">&#x274C;</span>
       <span class="pointer" (click)="showItemDetail(item.id); ">&#11167;</span>
       </div>

@@ -7,7 +7,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { NewItemFormComponent } from '../new-item-form/new-item-form.component';
 
-import { DatePipe } from '@angular/common';
 import { Item } from '../item';
 import { isDefined } from '@angular/compiler/src/util';
 
@@ -29,8 +28,7 @@ export class TodoItemComponent implements OnInit {
     private _listService: ListService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog,
-    private datepipe: DatePipe
+    private dialog: MatDialog
   ) {}
 
   // public trackItem(index: number, item: Item) {
@@ -48,27 +46,18 @@ export class TodoItemComponent implements OnInit {
   itemId: number = 0;
   itemDetailDisplayed;
   showItemDetail(itemId: number) {
-    console.log(
-      document.getElementById(String(itemId))!.previousElementSibling
-    );
-
     if (this.itemId != 0) {
       this.displayElement(this.itemId, 'none');
-      console.log(this.itemId);
     }
 
     if (this.itemId != 0 && this.itemId === itemId) {
       this.displayElement(this.itemId, 'none');
-      console.log(this.itemId);
       this.itemId = 0;
       return;
     }
+
     this.itemId = itemId;
     this.displayElement(this.itemId, 'block');
-    console.log(this.itemId);
-    console.log(
-      document.getElementById(String(itemId))!.previousElementSibling
-    );
   }
 
   displayElement(elementId: number, styleDisplayChoice: string) {
@@ -105,15 +94,6 @@ export class TodoItemComponent implements OnInit {
     let sub = this._listService
       .putItem(list_id, item_id, item)
       .subscribe((data) => console.log('Success\n' + data));
-  }
-  formatDate(dateString: string) {
-    return this.datepipe.transform(dateString, 'shortDate');
-  }
-  stringDateFormat(dateString: string) {
-    let dateFormat = 'en-GB';
-    let date = new Date(dateString);
-    date.toLocaleDateString(dateFormat);
-    return date;
   }
 
   //ziskanie id listu z url a nacitanie todo-itemov pre dany list
