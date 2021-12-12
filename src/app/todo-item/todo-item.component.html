@@ -1,21 +1,24 @@
-<div>
-  <button mat-raised-button (click)="openDialog()">Add todo item</button>
-</div>
+<div class="em">
+  <button mat-raised-button (click)="openDialog()">add todo item</button>
+  <!-- &#xFF0B; -->
+
 
 
 <div class="form-group">
-  <label mat-label for="search-text">Search</label>
-  <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+  <mat-form-field>
+  <mat-label mat-label for="search-text">Search by name</mat-label>
+  <input matInput type="email" class="form-control" id="search-text" aria-describedby="search-text" 
     [(ngModel)]="searchText" placeholder="Enter text to search" 
     autofocus>
+  </mat-form-field>
 </div>
 
-<mat-button-toggle-group [(ngModel)]="filterStatus" name="filter-text" id = "filter-text" aria-label="Font Style">
+<mat-button-toggle-group [(ngModel)]="filterStatus" name="filter-text" id = "filter-text" aria-label="Font Style" >
   <mat-button-toggle value="">Both</mat-button-toggle>
   <mat-button-toggle value="true">Finished</mat-button-toggle>
   <mat-button-toggle value="false">Unfinished</mat-button-toggle>
 </mat-button-toggle-group>
-
+</div>
 <mat-list class="items">
   <div class="itemInstance" *ngFor="let item of items | search: searchText | filter: filterStatus">
     <div >
